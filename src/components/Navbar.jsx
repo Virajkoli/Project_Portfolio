@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo, menu, close } from "../assets";
+import { useGSAP } from "@gsap/react";
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState("");
