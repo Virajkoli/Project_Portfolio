@@ -3,13 +3,19 @@ import { Link } from "react-router";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo, menu, close } from "../assets";
-import { useGSAP } from "@gsap/react";
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState("");
+  const [scrolled, setScrolled] = useState(false);
 
   return (
-    <nav className="px-5 w-full flex items-center z-20 fixed top-0 bg-primary">
+    <nav
+      className={`${
+        styles.paddingX
+      } w-full flex items-center py-5 fixed top-0 z-20 ${
+        scrolled ? "bg-primary" : "bg-transparent"
+      }`}
+    >
       <div className="w-full flex justify-between max-w-7xl mx-auto">
         <Link
           to="/"
@@ -43,7 +49,7 @@ const Navbar = () => {
           <img
             src={toggle ? close : menu}
             alt="menu"
-            className="w-[28px] h-[28px] object-contain cursor-pointer"
+            className="w-[28px] h-[28px] object-contain"
             onClick={() => setToggle(!toggle)}
           />
           <div
