@@ -71,7 +71,7 @@ function CarouselItem({
       className={`relative shrink-0 flex flex-col ${
         round
           ? "items-center justify-center text-center bg-[#060010] border-0"
-          : "items-start justify-between bg-[#222] border border-[#222] rounded-xl"
+          : "items-start justify-between border border-[#222] rounded-xl"
       } overflow-hidden cursor-grab active:cursor-grabbing`}
       style={{
         width: itemWidth,

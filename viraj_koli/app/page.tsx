@@ -4,6 +4,9 @@ import { Meteors } from "@/components/ui/meteors";
 import { HyperText } from "@/components/ui/hyper-text";
 import { Terminal, TypingAnimation } from "@/components/ui/terminal";
 import Carousel from "@/components/ui/Carousel";
+import { Globe } from "@/components/ui/globe";
+import { GitHubContributions } from "@/components/ui/github-contributions";
+import { NeonGradientCard } from "@/components/ui/neon-gradient-card";
 import {
   Github,
   Linkedin,
@@ -11,6 +14,8 @@ import {
   User,
   Calendar,
   Code2,
+  ExternalLink,
+  Folder,
 } from "lucide-react";
 import Image from "next/image";
 import { FiUser, FiCode, FiHeart } from "react-icons/fi";
@@ -47,28 +52,28 @@ const carouselItems = [
     title: "Developer",
     description: "Building elegant solutions with modern technologies",
     id: 1,
-    icon: <FiCode className="h-4 w-4 text-white" />,
+    icon: <FiCode className="h-4 w-4 text-blue-500" />,
     image: "/Me.jpg",
   },
   {
     title: "Creator",
     description: "Crafting experiences that make a difference",
     id: 2,
-    icon: <FiUser className="h-4 w-4 text-white" />,
+    icon: <FiUser className="h-4 w-4 text-blue-500" />,
     image: "/Me2.jpg",
   },
   {
     title: "Passionate",
     description: "Driven by curiosity and continuous learning",
     id: 3,
-    icon: <FiHeart className="h-4 w-4 text-white" />,
+    icon: <FiHeart className="h-4 w-4 text-blue-500" />,
     image: "/Me3.jpeg",
   },
   {
     title: "Problem Solver",
     description: "Turning vague requirements into clear, working systems",
     id: 4,
-    icon: <FiHeart className="h-4 w-4 text-white" />,
+    icon: <FiHeart className="h-4 w-4 text-blue-500" />,
     image: "/Me4.jpeg",
   },
   {
@@ -77,6 +82,80 @@ const carouselItems = [
     id: 3,
     icon: <FiHeart className="h-4 w-4 text-white" />,
     image: "/Me5.jpeg",
+  },
+];
+
+// Projects array
+const projects = [
+  {
+    name: "OrbiQ Technologies Website",
+    description:
+      "Orbiq Technologies stands as Pune's premier destination for Java, Spring Boot, and Microservices training. Our institute combines theoretical knowledge with practical, hands-on experience to create industry-ready developers. Provides content on Instagram as well as Youtube",
+    techStack: ["NextJs", "Postgres", "zoho mail", "Tailwind CSS"],
+    image: "/orbiqtechnologies.png", // Add your project image in public folder
+    link: "https://orbiqtechnologies.com", // Leave empty string if no live link
+    github: "https://github.com/VirajKoli/orbiq",
+    gradientColors: { firstColor: "#3b82f6", secondColor: "#8b5cf6" }, // Blue to Purple
+  },
+  {
+    name: "Campusconnect",
+    description:
+      "A platform to connect students, faculty, and campus communities.",
+    techStack: ["React", "Node.js", "Firebase", "Tailwind CSS"],
+    image: "/campusconnect.png",
+    link: "https://campus-connect-ten-theta.vercel.app/",
+    github: "https://github.com/VirajKoli/campusconnect",
+    gradientColors: { firstColor: "#f59e0b", secondColor: "#ef4444" }, // Orange to Red
+  },
+  {
+    name: "Time Tracker",
+    description:
+      "A complete time-tracking and productivity monitoring platform built with React and Node.js",
+    techStack: ["React", "NodeJs", "MongoDB", "Tailwind CSS"],
+    image: "/timetracker.png",
+    link: "",
+    github: "https://github.com/0x1git/time-Machine",
+    gradientColors: { firstColor: "#10b981", secondColor: "#06b6d4" }, // Green to Cyan
+  },
+  {
+    name: "Car Polling and Ride Sharing System",
+    description:
+      "The primary objective centres on developing a sophisticated website-based platform that enables vehicle owners traveling long distances to efficiently share available seats with passengers heading in the same direction. Includes Driver document verification as well as platform charges calculations.",
+    techStack: ["Java", "Spring Boot", "MySQL"],
+    image: "/drscp.png",
+    link: "", // No live demo
+    github: "https://github.com/Virajkoli/Infosys",
+    gradientColors: { firstColor: "#f59e0b", secondColor: "#ef4444" }, // Orange to Red
+  },
+  {
+    name: "College Event Website (Carvaan 2K25)",
+    description:
+      "A dynamic and visually appealing website created for Carvaan 2K25, the annual cultural festival of GCOEJ. The website showcases event details, schedules, and highlights, providing an engaging user experience for attendees and participants.",
+    techStack: ["EJS", "GSAP", "NodeJs"],
+    image: "/carvaan.png",
+    link: "https://carvaan2k25-gcoej.onrender.com/",
+    github: "https://github.com/Shubham07badgujar/Carvaan-2K25-Website",
+    gradientColors: { firstColor: "#10b981", secondColor: "#06b6d4" }, // Orange to Red
+  },
+  // {
+  //   name: "Suraksha - Tourist Safety PWA",
+  //   description:
+  //     "A Progressive Web App (PWA) designed to enhance tourist safety by providing real-time location tracking, emergency alerts, and quick access to local emergency services.",
+  //   techStack: ["Nextjs", "Tailwind"],
+  //   image: "/suraksha.png",
+  //   link: "https://suraksha-pwa.vercel.app/", // No live demo
+  //   github: "https://github.com/Virajkoli/tourist-safety-pwa",
+  //   gradientColors: { firstColor: "#3b82f6", secondColor: "#8b5cf6" }, // Blue to Purple
+  // },
+  {
+    name: "StackIt - Question and Answer Platform for Developers",
+    description:
+      "StackIt is a modern, minimal question-and-answer platform built with Next.js 15, PostgreSQL, and Cloudinary. It provides a clean, intuitive interface for users to ask questions, provide answers, and engage in collaborative learning.",
+    techStack: ["Nextjs", "PostgreSQL", "Tailwind"],
+    image: "/stackit.png",
+    link: "", // No live demo
+    github: "https://github.com/Virajkoli/StackIt_-Team-Hustlers-_Odoo",
+    gradientColors: { firstColor: "#3b82f6", secondColor: "#8b5cf6" }, // Blue to Purple
   },
 ];
 
@@ -331,36 +410,39 @@ export default function Home() {
           </div>
 
           {/* Terminal Component */}
-          <div className="flex justify-center mb-6">
-            <Terminal className="max-w-2xl w-full">
-              <TypingAnimation duration={50} className="text-green-500">
+          <div className="flex justify-center mb-6 px-2">
+            <Terminal className="max-w-2xl w-full text-xs sm:text-sm md:text-base">
+              <TypingAnimation
+                duration={50}
+                className="text-green-500 break-words"
+              >
                 $ npx viraj_koli achievements
               </TypingAnimation>
               <TypingAnimation
                 duration={30}
                 delay={1500}
-                className="text-yellow-400"
+                className="text-yellow-400 break-words"
               >
                 🥈 1st Runner-up – GHR.Hack 1.0 (National Level Hackathon)
               </TypingAnimation>
               <TypingAnimation
                 duration={30}
                 delay={3500}
-                className="text-amber-400"
+                className="text-amber-400 break-words"
               >
                 🏆 Gold Rank (Top 2%) – JAVA Certification, NPTEL
               </TypingAnimation>
               <TypingAnimation
                 duration={30}
                 delay={9500}
-                className="text-orange-400"
+                className="text-orange-400 break-words"
               >
                 🥇 Gold Badge – SQL (HackerRank)
               </TypingAnimation>
               <TypingAnimation
                 duration={30}
                 delay={11500}
-                className="text-purple-400"
+                className="text-purple-400 break-words"
               >
                 🚀 Top 55 out of 5000+ teams – Odoo National Hackathon (Oct
                 2025)
@@ -368,7 +450,7 @@ export default function Home() {
               <TypingAnimation
                 duration={30}
                 delay={11500}
-                className="text-purple-400"
+                className="text-purple-400 break-words"
               >
                 🚀 Top 265 out of 5000+ teams – Odoo National Hackathon (July
                 2025)
@@ -602,6 +684,28 @@ export default function Home() {
 
             {/* What I'm Currently Doing */}
             <div>
+              {/* Globe above heading */}
+              <div className="relative h-[400px] w-full mb-8 flex items-center justify-center overflow-hidden">
+                <Globe
+                  className="opacity-80"
+                  config={{
+                    width: 600,
+                    height: 600,
+                    onRender: () => {},
+                    devicePixelRatio: 2,
+                    phi: 0,
+                    theta: 0.3,
+                    dark: 1,
+                    diffuse: 0.4,
+                    mapSamples: 16000,
+                    mapBrightness: 1.2,
+                    baseColor: [0.3, 0.3, 0.3],
+                    markerColor: [59 / 255, 130 / 255, 246 / 255],
+                    glowColor: [0.3, 0.3, 0.3],
+                    markers: [{ location: [20.9974, 75.5626], size: 0.1 }],
+                  }}
+                />
+              </div>
               <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
                 <Calendar className="w-6 h-6" />
                 What I'm Currently Doing
@@ -670,11 +774,11 @@ export default function Home() {
           {/* Skills Content - 2x2 Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Frontend */}
-            <div className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/50">
-              <h3 className="text-xl font-semibold text-white mb-4 text-center">
+            <div className="border text-center border-zinc-800 rounded-lg p-6 bg-zinc-900/50">
+              <AuroraText className="text-xl text font-semibold text-white mb-4">
                 Frontend
-              </h3>
-              <div className="w-full overflow-hidden py-4">
+              </AuroraText>
+              <div className="w-full overflow-hidden">
                 <div className="flex animate-marquee hover:pause-animation">
                   {[
                     ...frontendSkills,
@@ -690,11 +794,11 @@ export default function Home() {
             </div>
 
             {/* Backend */}
-            <div className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/50">
-              <h3 className="text-xl font-semibold text-white mb-4 text-center">
+            <div className="border text-center border-zinc-800 rounded-lg p-6 bg-zinc-900/50">
+              <AuroraText className="text-xl font-semibold text-white mb-4">
                 Backend
-              </h3>
-              <div className="w-full overflow-hidden py-4">
+              </AuroraText>
+              <div className="w-full overflow-hidden">
                 <div className="flex animate-marquee-reverse hover:pause-animation">
                   {[...backendSkills, ...backendSkills, ...backendSkills].map(
                     (skill, index) => (
@@ -708,11 +812,11 @@ export default function Home() {
             </div>
 
             {/* Databases */}
-            <div className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/50">
-              <h3 className="text-xl font-semibold text-white mb-4 text-center">
+            <div className="border text-center border-zinc-800 rounded-lg p-6 bg-zinc-900/50">
+              <AuroraText className="text-xl font-semibold text-white mb-4">
                 Databases
-              </h3>
-              <div className="w-full overflow-hidden py-4">
+              </AuroraText>
+              <div className="w-full overflow-hidden">
                 <div className="flex animate-marquee hover:pause-animation">
                   {[
                     ...databaseSkills,
@@ -728,11 +832,11 @@ export default function Home() {
             </div>
 
             {/* Tools & Technologies */}
-            <div className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/50">
-              <h3 className="text-xl font-semibold text-white mb-4 text-center">
+            <div className="border text-center border-zinc-800 rounded-lg p-6 bg-zinc-900/50">
+              <AuroraText className="text-xl font-semibold text-white mb-4">
                 Tools & Technologies
-              </h3>
-              <div className="w-full overflow-hidden py-4">
+              </AuroraText>
+              <div className="w-full overflow-hidden">
                 <div className="flex animate-marquee-reverse hover:pause-animation">
                   {[...toolsSkills, ...toolsSkills, ...toolsSkills].map(
                     (skill, index) => (
@@ -765,11 +869,16 @@ export default function Home() {
             </p>
           </div>
 
+          {/* GitHub Contributions */}
+          <div className="mb-8">
+            <GitHubContributions username="VirajKoli" years={[2025, 2026]} />
+          </div>
+
           {/* Roadmap Container */}
           <div className="relative">
-            {/* SVG Road Path */}
+            {/* Desktop SVG Road Path - Hidden on mobile */}
             <svg
-              className="w-full h-auto"
+              className="w-full h-auto hidden md:block"
               viewBox="0 0 1200 800"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -792,12 +901,88 @@ export default function Home() {
               />
             </svg>
 
-            {/* Experience Items positioned along the road */}
-            <div className="absolute inset-0">
+            {/* Experience Items positioned along the road - Desktop Only */}
+            <div className="absolute inset-0 hidden md:block">
               {/* Experience 1 - Start */}
-              <div className="absolute" style={{ top: "48%", left: "5%" }}>
+              <div className="absolute" style={{ top: "24%", left: "-5%" }}>
                 <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-white border-4 border-white flex items-center justify-center mb-4 p-2">
+                  <div className="w-16 h-16 rounded-full bg-white border-4 border-orange-500 flex items-center justify-center mb-4 p-2 hover:scale-120 transition-transform duration-300">
+                    <Image
+                      src="/gcoej.png"
+                      alt="Gcoej"
+                      width={48}
+                      height={48}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs hover:scale-110 transition-transform duration-300">
+                    <h4 className="text-white font-semibold mb-1">
+                      Software Development Cell Member
+                    </h4>
+                    <p className="text-zinc-400 text-sm mb-2">
+                      Oct 2024 - Present
+                    </p>
+                    <p className="text-zinc-300 text-xs">
+                      Government College of Engineering, Jalgaon
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Experience 2 - Start */}
+              <div className="absolute" style={{ top: "40%", left: "20%" }}>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-white border-4 border-orange-500 flex items-center justify-center mb-4 p-2 hover:scale-120 transition-transform duration-300">
+                    <Image
+                      src="/gcoej.png"
+                      alt="Gcoej"
+                      width={48}
+                      height={48}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs hover:scale-110 transition-transform duration-300">
+                    <h4 className="text-white font-semibold mb-1">
+                      Managing Editor
+                    </h4>
+                    <p className="text-zinc-400 text-sm mb-2">
+                      Oct 2024 - June 2025
+                    </p>
+                    <p className="text-zinc-300 text-xs">GCOEJ Media</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Experience 3 */}
+              <div className="absolute" style={{ top: "10%", left: "28%" }}>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-white border-4 border-orange-500 flex items-center justify-center mb-4 p-2 hover:scale-120 transition-transform duration-300">
+                    <Image
+                      src="/gcoej.png"
+                      alt="Gcoej"
+                      width={48}
+                      height={48}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs hover:scale-110 transition-transform duration-300">
+                    <h4 className="text-white font-semibold mb-1">
+                      SRC Member
+                    </h4>
+                    <p className="text-zinc-400 text-sm mb-2">
+                      Nov 2024 - June 2025
+                    </p>
+                    <p className="text-zinc-300 text-xs">
+                      Government College of Engineering, Jalgaon
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Experience 4 */}
+              <div className="absolute" style={{ top: "58%", left: "40%" }}>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-white border-4 border-green-800 flex items-center justify-center mb-4 p-2 hover:scale-120 transition-transform duration-300">
                     <Image
                       src="/electrosoft.png"
                       alt="Electrosoft"
@@ -806,7 +991,7 @@ export default function Home() {
                       className="object-contain"
                     />
                   </div>
-                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs">
+                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs hover:scale-110 transition-transform duration-300">
                     <h4 className="text-white font-semibold mb-1">
                       Full Stack Web Developer Intern
                     </h4>
@@ -818,10 +1003,10 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Experience 2 */}
-              <div className="absolute" style={{ top: "15%", left: "25%" }}>
+              {/* Experience 5 */}
+              <div className="absolute" style={{ top: "35%", left: "58%" }}>
                 <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center mb-4 p-2">
+                  <div className="w-16 h-16 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center mb-4 p-2 hover:scale-120 transition-transform duration-300">
                     <Image
                       src="/infosys.png"
                       alt="Infosys"
@@ -830,7 +1015,7 @@ export default function Home() {
                       className="object-contain"
                     />
                   </div>
-                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs">
+                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs hover:scale-110 transition-transform duration-300">
                     <h4 className="text-white font-semibold mb-1">
                       Java Developer Intern
                     </h4>
@@ -842,10 +1027,10 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Experience 3 */}
-              <div className="absolute" style={{ top: "48%", left: "45%" }}>
+              {/* Experience 6 - Current */}
+              <div className="absolute" style={{ top: "62%", left: "75%" }}>
                 <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-white border-4 border-green-500 flex items-center justify-center mb-4 p-2">
+                  <div className="w-16 h-16 rounded-full bg-white border-4 border-green-500 flex items-center justify-center mb-4 p-2 hover:scale-120 transition-transform duration-300">
                     <Image
                       src="/orbiq3.png"
                       alt="Orbiq"
@@ -854,41 +1039,17 @@ export default function Home() {
                       className="object-contain"
                     />
                   </div>
-                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs">
+                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs hover:scale-110 transition-transform duration-300">
                     <h4 className="text-white font-semibold mb-1">
-                      Full Stack Web Developer
-                    </h4>
-                    <p className="text-zinc-400 text-sm mb-2">
-                      Oct 2025 - Dec 2025
-                    </p>
-                    <p className="text-lime-500 text-xs mb-2">OrbiQ Technologies</p>
-                    <p className="text-zinc-300 text-xs">
-                      orbiqtechnologies.com
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Experience 4 */}
-              <div className="absolute" style={{ top: "15%", left: "70%" }}>
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-white border-4 border-green-500 flex items-center justify-center mb-4 p-2">
-                    <Image
-                      src="/orbiq3.png"
-                      alt="Orbiq"
-                      width={48}
-                      height={48}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs">
-                    <h4 className="text-white font-semibold mb-1">
+                      Full Stack Web Developer & <br />
                       Content Manager
                     </h4>
                     <p className="text-zinc-400 text-sm mb-2">
-                      Jan 2026 - Present
+                      Oct 2025 - Present
                     </p>
-                    <p className="text-lime-500 text-xs mb-2">OrbiQ Technologies</p>
+                    <p className="text-lime-500 text-xs mb-2">
+                      OrbiQ Technologies
+                    </p>
                     <p className="text-zinc-300 text-xs">
                       orbiqtechnologies.com
                     </p>
@@ -896,13 +1057,13 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Experience 5 - Current */}
-              <div className="absolute" style={{ top: "48%", left: "90%" }}>
+              {/* Experience 7 - Current */}
+              <div className="absolute" style={{ top: "32%", left: "90%" }}>
                 <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full bg-zinc-800 border-4 border-pink-500 flex items-center justify-center mb-4 animate-pulse">
+                  <div className="w-16 h-16 rounded-full bg-zinc-800 border-4 border-pink-500 flex items-center justify-center mb-4 animate-pulse hover:scale-120 transition-transform duration-300">
                     <FiHeart className="w-8 h-8 text-pink-500" />
                   </div>
-                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs">
+                  <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-4 max-w-xs hover:scale-110 transition-transform duration-300">
                     <h4 className="text-white font-semibold mb-1">
                       Open to Opportunities
                     </h4>
@@ -914,15 +1075,277 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            {/* Mobile Vertical Layout */}
+            <div className="md:hidden space-y-6 px-4">
+              {/* Experience 1 */}
+              <div className="flex items-start gap-3">
+                <div className="shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border-2 border-orange-500 flex items-center justify-center p-1.5">
+                    <Image
+                      src="/gcoej.png"
+                      alt="Gcoej"
+                      width={40}
+                      height={40}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-3 flex-1">
+                  <h4 className="text-white font-semibold mb-1 text-xs sm:text-sm">
+                    Software Development Cell Member
+                  </h4>
+                  <p className="text-zinc-400 text-xs mb-1">
+                    Oct 2024 - Present
+                  </p>
+                  <p className="text-zinc-300 text-xs">
+                    Government College of Engineering, Jalgaon
+                  </p>
+                </div>
+              </div>
+
+              {/* Experience 2 */}
+              <div className="flex items-start gap-3">
+                <div className="shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border-2 border-orange-500 flex items-center justify-center p-1.5">
+                    <Image
+                      src="/gcoej.png"
+                      alt="Gcoej"
+                      width={40}
+                      height={40}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-3 flex-1">
+                  <h4 className="text-white font-semibold mb-1 text-xs sm:text-sm">
+                    Managing Editor
+                  </h4>
+                  <p className="text-zinc-400 text-xs mb-1">
+                    Oct 2024 - June 2025
+                  </p>
+                  <p className="text-zinc-300 text-xs">GCOEJ Media</p>
+                </div>
+              </div>
+
+              {/* Experience 3 */}
+              <div className="flex items-start gap-3">
+                <div className="shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border-2 border-orange-500 flex items-center justify-center p-1.5">
+                    <Image
+                      src="/gcoej.png"
+                      alt="Gcoej"
+                      width={40}
+                      height={40}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-3 flex-1">
+                  <h4 className="text-white font-semibold mb-1 text-xs sm:text-sm">
+                    SRC Member
+                  </h4>
+                  <p className="text-zinc-400 text-xs mb-1">
+                    Nov 2024 - June 2025
+                  </p>
+                  <p className="text-zinc-300 text-xs">
+                    Government College of Engineering, Jalgaon
+                  </p>
+                </div>
+              </div>
+
+              {/* Experience 4 */}
+              <div className="flex items-start gap-3">
+                <div className="shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border-2 border-green-800 flex items-center justify-center p-1.5">
+                    <Image
+                      src="/electrosoft.png"
+                      alt="Electrosoft"
+                      width={40}
+                      height={40}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-3 flex-1">
+                  <h4 className="text-white font-semibold mb-1 text-xs sm:text-sm">
+                    Full Stack Web Developer Intern
+                  </h4>
+                  <p className="text-zinc-400 text-xs mb-1">
+                    June 2025 - July 2025
+                  </p>
+                  <p className="text-zinc-300 text-xs">Electrosoft Systems</p>
+                </div>
+              </div>
+
+              {/* Experience 5 */}
+              <div className="flex items-start gap-3">
+                <div className="shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center p-1.5">
+                    <Image
+                      src="/infosys.png"
+                      alt="Infosys"
+                      width={40}
+                      height={40}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-3 flex-1">
+                  <h4 className="text-white font-semibold mb-1 text-xs sm:text-sm">
+                    Java Developer Intern
+                  </h4>
+                  <p className="text-zinc-400 text-xs mb-1">
+                    Aug 2025 - Oct 2025
+                  </p>
+                  <p className="text-zinc-300 text-xs">Infosys Springboard</p>
+                </div>
+              </div>
+
+              {/* Experience 6 */}
+              <div className="flex items-start gap-3">
+                <div className="shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border-2 border-green-500 flex items-center justify-center p-1.5">
+                    <Image
+                      src="/orbiq3.png"
+                      alt="Orbiq"
+                      width={40}
+                      height={40}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-3 flex-1">
+                  <h4 className="text-white font-semibold mb-1 text-xs sm:text-sm">
+                    Full Stack Web Developer & Content Manager
+                  </h4>
+                  <p className="text-zinc-400 text-sm mb-2">
+                    Oct 2025 - Present
+                  </p>
+                  <p className="text-lime-500 text-xs mb-2">
+                    OrbiQ Technologies
+                  </p>
+                  <p className="text-zinc-300 text-xs">orbiqtechnologies.com</p>
+                </div>
+              </div>
+
+              {/* Experience 7 */}
+              <div className="flex items-start gap-3">
+                <div className="shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-zinc-800 border-2 border-pink-500 flex items-center justify-center animate-pulse">
+                    <FiHeart className="w-6 h-6 sm:w-7 sm:h-7 text-pink-500" />
+                  </div>
+                </div>
+                <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-3 flex-1">
+                  <h4 className="text-white font-semibold mb-1 text-xs sm:text-sm">
+                    Open to Opportunities
+                  </h4>
+                  <p className="text-zinc-400 text-xs mb-1">2026</p>
+                  <p className="text-zinc-300 text-xs">
+                    Currently seeking full-time roles
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Projects Section */}
       <section
         id="projects"
-        className="min-h-screen flex items-center justify-center px-4 bg-zinc-900"
+        className="min-h-screen flex items-center justify-center px-4 py-20"
       >
-        <h2 className="text-3xl font-bold text-white">Projects Section</h2>
+        <div className="max-w-7xl w-full mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <Folder className="w-8 h-8 text-zinc-400 mx-auto mb-4" />
+            <HyperText
+              className="text-4xl sm:text-5xl font-bold mb-4"
+              duration={1000}
+            >
+              Featured Projects
+            </HyperText>
+            <p className="text-zinc-400 text-lg">
+              A showcase of my recent work and contributions
+            </p>
+          </div>
+
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <NeonGradientCard
+                key={index}
+                className="group cursor-pointer"
+                neonColors={project.gradientColors}
+                borderSize={2}
+                borderRadius={16}
+              >
+                <div className="flex flex-col h-full">
+                  {/* Project Image */}
+                  {project.image && (
+                    <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden bg-zinc-800">
+                      <Image
+                        src={project.image}
+                        alt={project.name}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                  )}
+
+                  {/* Project Info */}
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                      {project.name}
+                    </h3>
+                    <p className="text-zinc-400 text-sm mb-4 line-clamp-3">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.techStack.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="px-2 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300 border border-zinc-700"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Links */}
+                    <div className="flex gap-3 mt-auto">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-3 py-2 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-all text-sm border border-zinc-700 hover:border-zinc-600"
+                        >
+                          <Github className="w-4 h-4" />
+                          Code
+                        </a>
+                      )}
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-3 py-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white transition-all text-sm"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Live Demo
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </NeonGradientCard>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section
