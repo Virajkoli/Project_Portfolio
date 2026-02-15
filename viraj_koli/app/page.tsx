@@ -16,6 +16,10 @@ import {
   Code2,
   ExternalLink,
   Folder,
+  Mail,
+  Phone,
+  MapPin,
+  Send,
 } from "lucide-react";
 import Image from "next/image";
 import { FiUser, FiCode, FiHeart } from "react-icons/fi";
@@ -53,7 +57,7 @@ const carouselItems = [
     description: "Building elegant solutions with modern technologies",
     id: 1,
     icon: <FiCode className="h-4 w-4 text-blue-500" />,
-    image: "/Me.jpg",
+    image: "/Mee.jpeg",
   },
   {
     title: "Creator",
@@ -805,7 +809,7 @@ export default function Home() {
                       <div key={index} className="flex-shrink-0 mx-6">
                         {skill.node}
                       </div>
-                    )
+                    ),
                   )}
                 </div>
               </div>
@@ -843,7 +847,7 @@ export default function Home() {
                       <div key={index} className="flex-shrink-0 mx-6">
                         {skill.node}
                       </div>
-                    )
+                    ),
                   )}
                 </div>
               </div>
@@ -1256,7 +1260,7 @@ export default function Home() {
         id="projects"
         className="min-h-screen flex items-center justify-center px-4 py-20"
       >
-        <div className="max-w-7xl w-full mx-auto">
+        <div className="max-w-6xl w-full mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
             <Folder className="w-8 h-8 text-zinc-400 mx-auto mb-4" />
@@ -1271,78 +1275,97 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Projects List - Alternating Layout */}
+          <div className="space-y-20">
             {projects.map((project, index) => (
-              <NeonGradientCard
+              <div
                 key={index}
-                className="group cursor-pointer"
-                neonColors={project.gradientColors}
-                borderSize={2}
-                borderRadius={16}
+                className={`group flex flex-col ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                } gap-8 items-center`}
               >
-                <div className="flex flex-col h-full">
-                  {/* Project Image */}
-                  {project.image && (
-                    <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden bg-zinc-800">
+                {/* Project Image */}
+                <div className="w-full md:w-1/2">
+                  <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden bg-zinc-900 border border-zinc-800">
+                    {project.image && (
                       <Image
                         src={project.image}
                         alt={project.name}
                         fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        className="object-cover"
                       />
-                    </div>
-                  )}
-
-                  {/* Project Info */}
-                  <div className="flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
-                      {project.name}
-                    </h3>
-                    <p className="text-zinc-400 text-sm mb-4 line-clamp-3">
-                      {project.description}
-                    </p>
-
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.techStack.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-2 py-1 text-xs rounded-md bg-zinc-800 text-zinc-300 border border-zinc-700"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Links */}
-                    <div className="flex gap-3 mt-auto">
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-3 py-2 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-all text-sm border border-zinc-700 hover:border-zinc-600"
-                        >
-                          <Github className="w-4 h-4" />
-                          Code
-                        </a>
-                      )}
-                      {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-3 py-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white transition-all text-sm"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          Live Demo
-                        </a>
-                      )}
-                    </div>
+                    )}
+                    {/* Subtle gradient overlay */}
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                      style={{
+                        background: `linear-gradient(135deg, ${project.gradientColors.firstColor}, ${project.gradientColors.secondColor})`,
+                      }}
+                    />
                   </div>
                 </div>
-              </NeonGradientCard>
+
+                {/* Project Info */}
+                <div className="w-full md:w-1/2 space-y-4">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div
+                        className="w-1 h-8 rounded-full"
+                        style={{
+                          background: `linear-gradient(to bottom, ${project.gradientColors.firstColor}, ${project.gradientColors.secondColor})`,
+                        }}
+                      />
+                      <h3 className="text-2xl font-bold text-white">
+                        {project.name}
+                      </h3>
+                    </div>
+                    <p className="text-zinc-400 text-base leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-3 py-1.5 text-sm rounded-md bg-zinc-900 text-zinc-300 border border-zinc-800"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Links */}
+                  <div className="flex gap-4 pt-2">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white transition-colors text-sm border border-zinc-800 hover:border-zinc-700"
+                      >
+                        <Github className="w-4 h-4" />
+                        View Code
+                      </a>
+                    )}
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-white transition-colors text-sm"
+                        style={{
+                          background: `linear-gradient(135deg, ${project.gradientColors.firstColor}, ${project.gradientColors.secondColor})`,
+                        }}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        Live Demo
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -1350,10 +1373,351 @@ export default function Home() {
 
       <section
         id="contact"
-        className="min-h-screen flex items-center justify-center px-4"
+        className="min-h-screen flex items-center justify-center px-4 py-20"
       >
-        <h2 className="text-3xl font-bold text-white">Contact Section</h2>
+        <div className="max-w-7xl w-full mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <Mail className="w-8 h-8 text-zinc-400 mx-auto mb-4" />
+            <HyperText
+              className="text-4xl sm:text-5xl font-bold mb-4"
+              duration={1000}
+            >
+              Get In Touch
+            </HyperText>
+            <p className="text-zinc-400 text-lg">
+              Let's collaborate and create something amazing together
+            </p>
+          </div>
+
+          {/* Contact Header Section */}
+          <div className="grid md:grid-cols-2 gap-12 mb-16">
+            {/* Left Side - Heading & Background Image */}
+            <div
+              className="relative rounded-2xl overflow-hidden min-h-[300px] flex items-center justify-center bg-cover bg-center"
+              style={{
+                backgroundImage: "url('/Mee.jpeg')",
+              }}
+            >
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+              {/* Content */}
+              <div className="relative z-10 text-center px-8">
+                <h3 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+                  Reach Out to Us
+                </h3>
+                <p className="text-zinc-200 text-lg">
+                  Need support, have a query, or looking for collaboration?
+                  Let's talk!
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side - Contact Form */}
+            <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8">
+              <form className="space-y-6">
+                {/* Name and Email Row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-zinc-300 mb-2"
+                    >
+                      Your Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      placeholder="Enter your name"
+                      className="w-full px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-zinc-300 mb-2"
+                    >
+                      Your Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      placeholder="Enter your email"
+                      className="w-full px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* Subject */}
+                <div>
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-zinc-300 mb-2"
+                  >
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    placeholder="Enter subject"
+                    className="w-full px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                  />
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-zinc-300 mb-2"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    placeholder="Type your message here..."
+                    className="w-full px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
+                  ></textarea>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                >
+                  Send Message
+                  <Send className="w-4 h-4" />
+                </button>
+              </form>
+            </div>
+          </div>
+
+          {/* Contact Information Section */}
+          <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 md:p-12">
+            {/* Contact Details */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              {/* Phone */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4">
+                  <Phone className="w-6 h-6 text-blue-500" />
+                </div>
+                <h4 className="text-white font-semibold mb-2">Phone</h4>
+                <a
+                  href="tel:+919423575595"
+                  className="text-zinc-400 hover:text-white transition-colors"
+                >
+                  +91-9423575595
+                </a>
+              </div>
+
+              {/* Email */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-4">
+                  <Mail className="w-6 h-6 text-green-500" />
+                </div>
+                <h4 className="text-white font-semibold mb-2">Email</h4>
+                <a
+                  href="mailto:viraj.codes@gmail.com"
+                  className="text-zinc-400 hover:text-white transition-colors"
+                >
+                  viraj.codes@gmail.com
+                </a>
+              </div>
+
+              {/* Location */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4">
+                  <MapPin className="w-6 h-6 text-purple-500" />
+                </div>
+                <h4 className="text-white font-semibold mb-2">Location</h4>
+                <p className="text-zinc-400">Jalgaon, Maharashtra, India</p>
+              </div>
+            </div>
+
+            {/* Social Media Links */}
+            <div className="flex items-center justify-center gap-4 pt-8 border-t border-zinc-800">
+              <a
+                href="https://github.com/VirajKoli"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 hover:border-zinc-600 transition-all duration-300 flex items-center justify-center group"
+                aria-label="GitHub"
+              >
+                <Github className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" />
+              </a>
+              <a
+                href="https://instagram.com/_r4j.44_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 hover:border-zinc-600 transition-all duration-300 flex items-center justify-center group"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" />
+              </a>
+              <a
+                href="https://linkedin.com/in/viraj-koli-a65637255"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 hover:border-zinc-600 transition-all duration-300 flex items-center justify-center group"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" />
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
+
+      {/* Footer */}
+      <footer className="relative bg-black border-t border-zinc-800">
+        {/* Curved Overlay Design */}
+        <div className="absolute top-0 left-0 right-0 h-24 overflow-hidden">
+          <svg
+            className="absolute top-0 w-full h-24"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 100"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,0 Q360,100 720,50 T1440,0 L1440,100 L0,100 Z"
+              fill="rgb(24, 24, 27)"
+              opacity="0.5"
+            />
+          </svg>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Footer Content Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
+            {/* Brand Section */}
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-4">Viraj Koli</h3>
+              <p className="text-zinc-400 mb-4">
+                Full Stack Developer passionate about building elegant solutions
+                with modern technologies.
+              </p>
+              <div className="flex gap-3">
+                <a
+                  href="https://github.com/VirajKoli"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-4 h-4 text-zinc-400 hover:text-white" />
+                </a>
+                <a
+                  href="https://instagram.com/_r4j.44_"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-4 h-4 text-zinc-400 hover:text-white" />
+                </a>
+                <a
+                  href="https://linkedin.com/in/viraj-koli-a65637255"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-4 h-4 text-zinc-400 hover:text-white" />
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">
+                Quick Links
+              </h4>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="#home"
+                    className="text-zinc-400 hover:text-white transition-colors"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#about"
+                    className="text-zinc-400 hover:text-white transition-colors"
+                  >
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#skills"
+                    className="text-zinc-400 hover:text-white transition-colors"
+                  >
+                    Skills
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#experience"
+                    className="text-zinc-400 hover:text-white transition-colors"
+                  >
+                    Experience
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#projects"
+                    className="text-zinc-400 hover:text-white transition-colors"
+                  >
+                    Projects
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Contact Info */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">
+                Get in Touch
+              </h4>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2 text-zinc-400">
+                  <Mail className="w-4 h-4" />
+                  <a
+                    href="mailto:viraj.codes@gmail.com"
+                    className="hover:text-white transition-colors"
+                  >
+                    viraj.codes@gmail.com
+                  </a>
+                </li>
+                <li className="flex items-center gap-2 text-zinc-400">
+                  <Phone className="w-4 h-4" />
+                  <a
+                    href="tel:+919423575595"
+                    className="hover:text-white transition-colors"
+                  >
+                    +91-9423575595
+                  </a>
+                </li>
+                <li className="flex items-center gap-2 text-zinc-400">
+                  <MapPin className="w-4 h-4" />
+                  <span>Jalgaon, Maharashtra, India</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="pt-8 border-t border-zinc-800 text-center">
+            <p className="text-zinc-400 text-sm">
+              © {new Date().getFullYear()} Viraj Koli. All rights reserved.
+              Built with Love 💓
+            </p>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
