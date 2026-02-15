@@ -1504,11 +1504,9 @@ export default function Home() {
                 </div>
                 <h4 className="text-white font-semibold mb-2">Phone</h4>
                 <a
-                  href="tel:+919423575595"
+                  href="tel:+"
                   className="text-zinc-400 hover:text-white transition-colors"
-                >
-                  +91-9423575595
-                </a>
+                ></a>
               </div>
 
               {/* Email */}
@@ -1695,11 +1693,9 @@ export default function Home() {
                 <li className="flex items-center gap-2 text-zinc-400">
                   <Phone className="w-4 h-4" />
                   <a
-                    href="tel:+919423575595"
+                    href="tel:+"
                     className="hover:text-white transition-colors"
-                  >
-                    +91-9423575595
-                  </a>
+                  ></a>
                 </li>
                 <li className="flex items-center gap-2 text-zinc-400">
                   <MapPin className="w-4 h-4" />
